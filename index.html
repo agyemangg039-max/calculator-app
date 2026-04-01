@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Basic Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f7;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .calculator {
+            width: 350px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 12px lightgray;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid gray;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .operation-btn {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .clear-btn {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <h1>Basic Calculator</h1>
+
+        <input type="number" id="num1" placeholder="Enter first number">
+        <br>
+        <input type="number" id="num2" placeholder="Enter second number">
+        <br>
+
+        <button class="operation-btn" onclick="addNumbers()">Add</button>
+        <button class="operation-btn" onclick="subtractNumbers()">Subtract</button>
+        <button class="operation-btn" onclick="multiplyNumbers()">Multiply</button>
+        <button class="operation-btn" onclick="divideNumbers()">Divide</button>
+        <button class="clear-btn" onclick="clearCalculator()">Clear</button>
+
+        <p id="result">Result: </p>
+    </div>
+
+    <script>
+        function getNumbers() {
+            let firstNumber = Number(document.getElementById("num1").value);
+            let secondNumber = Number(document.getElementById("num2").value);
+
+            return {
+                first: firstNumber,
+                second: secondNumber
+            };
+        }
+
+        function addNumbers() {
+            let numbers = getNumbers();
+            let answer = numbers.first + numbers.second;
+            document.getElementById("result").innerText = "Result: " + answer;
+        }
+
+        function subtractNumbers() {
+            let numbers = getNumbers();
+            let answer = numbers.first - numbers.second;
+            document.getElementById("result").innerText = "Result: " + answer;
+        }
+
+        function multiplyNumbers() {
+            let numbers = getNumbers();
+            let answer = numbers.first * numbers.second;
+            document.getElementById("result").innerText = "Result: " + answer;
+        }
+
+        function divideNumbers() {
+            let numbers = getNumbers();
+
+            if (numbers.second === 0) {
+                document.getElementById("result").innerText = "Result: Cannot divide by zero";
+                return;
+            }
+
+            let answer = numbers.first / numbers.second;
+            document.getElementById("result").innerText = "Result: " + answer;
+        }
+
+        function clearCalculator() {
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            document.getElementById("result").innerText = "Result: ";
+        }
+    </script>
+
+</body>
+</html>
